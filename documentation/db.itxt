@@ -1,0 +1,34 @@
+tbl_class:
+cls_id
+cls_name
+cls_supplier (manufacturer)
+cls_life (expected life)
+cls_life_period (expected life unit period)
+
+tbl_machine:
+mac_id
+mac_name
+mac_hours
+
+tbl_component:
+cmp_id
+cmp_class_id
+cmp_machine_id
+cmp_type
+cmp_vendor
+cmp_arrival_on
+cmp_status (not fitted, fitted, nearing expiry, expiry crossed, expired)
+cmp_fitted_on
+cmp_fitted_by
+cmp_expired_on
+cmp_defect_type
+cmp_removed_by
+cmp_used_hours
+
+tbl_hour_log:
+log_id
+log_machine_id
+log_entry_on
+log_entry_by
+log_hours
+log_checked (for adding the hours to component table)

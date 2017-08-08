@@ -1,0 +1,58 @@
+Major Components of the Application:
+1. Class Entry/Edit
+2. Component Entry/Edit
+3. Machine Entry/Edit
+4. Hour Log Entry/Edit
+5. Component Detail
+6. Expired Components
+7. Component Fitting/Unfitting
+8. Expiring Component Notification
+9. Active Component Summary
+
+Header Structure:
+    Logo or application name at the left
+    Right
+        Top
+          Hour Log form
+              Machine List in Dropdown
+              No of hours textbox
+              Enter log button
+          Component Search box
+              Search box
+              Search button
+          Fit/Unfit Component Button
+          Go to Dashboard link if it is not a dashboard
+      Navigation
+          Setup
+              Machine Add
+              Component Class Add
+              Component Add
+          Entry
+              Hour Log
+              Component Fitting
+              Component Unfitting
+          List & Search
+              Machine
+              Component Class
+              All Components
+              Active Components
+              Expired Components
+              Expiring Components
+              Hour Log
+
+Dashbao Structure
+    Message or notification bar at the top
+    Active Component Summary
+        Show Expiring Components link at top right
+        List of components
+            Component id and name
+            Machine id and name
+            Fitted date
+            Number of hours to expected life
+            Number of hours used
+            Detail button
+
+List & Search Structure
+    Search bar at top
+    List of elements
+    Pagination link
