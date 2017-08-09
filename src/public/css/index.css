@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 680px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.align_right {
+  text-align: right;
+}
+
+.font_small {
+  font-size:14px;
+}
+
+.blue_link {
+  cursor: pointer;
+  color: #1e67c4;
+}
+
+.blue_link:hover {
+  color: #5696E6;
+}
+
+.main_table {
+  margin-top: 10px;
+}
+
+.main_table td {
+  padding: 6px 12px;
+}
+
+.main_table input[type=button] {
+  padding: 0px 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#header {
+  height: 100px;
+  border-bottom: 1px solid #c3def5;
+  padding: 8px 20px 2px;
+}
+
+#header .title {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  color: #5696E6;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 22px;
+  font-family: Iceland;
+}
+
+#header .title .title_large {
+  display: inline-block;
+  margin-left: 16px;
+  color: #3566AC;
+}
+
+#header .header_right {
+  display:  block;
+  float: right;
+  text-align: right;
+}
+
+#header_search {
+  margin-top: -7px;
+}
+
+.header_right input, .header_right select {
+  height: 22px;
+  font-size: 12px;
+  padding: 0 8px;
+}
+
+.header_right input[type=button] {
+  width: 78px;
+  cursor: pointer;
+}
+
+.header_right input::placeholder, .header_right select:first-child {
+  color: #AAA;
+}
+
+#header_search input[name=hcomp_text] {
+  width: 197px;
+}
+
+#header_hour_log input[name=hlog_hour] {
+  width: 50px;
+}
+
+.navbar_row {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: 15px;
+}
+
+.dash_link {
+  display: inline-block;
+  position: absolute;
+  font-size: 12px;
+  bottom: 0;
+  margin-left: -100px;
+  cursor: pointer;
+  color: #1e67c4;
+}
+
+.dash_link:hover {
+  color: #5696E6;
+}
+
+#navbar {
+  display: inline-block;
+  color: #5696E6;
+  font-weight: 600;
+  background: #FFF;
+  border: 1px solid #CCF;
+  border-radius: 6px;
+}
+
+#navbar .menu {
+  display: inline-block;
+  padding: 2px 16px;
+  padding-bottom: 4px;
+  cursor: default;
+  position: relative;
+}
+
+#navbar .menu:hover {
+  background: #5696E6;
+  color: #FFF;
+}
+
+#navbar .sub_menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  width: 200px;
+  text-align: left;
+  right: 0;
+  background: #EEF;
+  color: #666;
+  font-size: 14px;
+  border: 1px solid #CCF;
+  border-radius: 2px;
+}
+
+#navbar .sub_menu > div {
+  padding: 4px 18px;
+  cursor: pointer;
+}
+
+#navbar .menu:hover .sub_menu, #navbar .sub_menu:hover .sub_menu {
+  display: block;
+}
+
+#navbar .sub_menu > div:hover {
+  background: #5696E6;
+  color: #FFF;
+}
+
+.main_body {
+  padding: 20px;
+}

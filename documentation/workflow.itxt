@@ -1,13 +1,13 @@
 Major Components of the Application:
-1. Class Entry/Edit
-2. Component Entry/Edit
-3. Machine Entry/Edit
-4. Hour Log Entry/Edit
-5. Component Detail
-6. Expired Components
-7. Component Fitting/Unfitting
-8. Expiring Component Notification
-9. Active Component Summary
+  1. Class Entry/Edit
+  2. Component Entry/Edit
+  3. Machine Entry/Edit
+  4. Hour Log Entry/Edit
+  5. Component Detail
+  6. Expired Components
+  7. Component Fitting/Unfitting
+  8. Expiring Component Notification
+  9. Active Component Summary
 
 Header Structure:
     Logo or application name at the left
@@ -20,8 +20,6 @@ Header Structure:
           Component Search box
               Search box
               Search button
-          Fit/Unfit Component Button
-          Go to Dashboard link if it is not a dashboard
       Navigation
           Setup
               Machine Add
