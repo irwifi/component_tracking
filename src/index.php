@@ -1,12 +1,26 @@
+<?
+  session_start();
+  include "common/config.php";
+  include "common/connect.php";
+
+  if(isset($_GET["page"])) {
+    $page = $_GET["page"];
+  } else {
+    $page = "dashboard";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Component Tracking</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Iceland' rel='stylesheet'>
   <link rel="stylesheet" href="public/css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -14,7 +28,7 @@
     <div id="header" class="row">
       <div class="header_left  col-4">
         <div class="title">
-          C O M P O N E N T<span class="title_large">T R A C K I N G</span>
+          <a href="index.php">C O M P O N E N T<span class="title_large">T R A C K I N G</span></a>
         </div>
       </div>
 
@@ -37,7 +51,7 @@
           <div id="navbar">
             <div class="menu">Setup
               <div class="sub_menu">
-                <div>Add New Machine</div>
+                <a href="index.php?page=add_machine"><div>Add New Machine</div></a>
                 <div>Add Component Class</div>
                 <div>Add New Component</div>
               </div>
@@ -66,17 +80,29 @@
     </div>
 
     <div class="main_body">
-      <?
-        if(isset($page)) {
+      <div class="page_title"></div>
+      <div class="msg_box alert"></div>
 
-        } else {
-          include "pages/dashboard.php";
-        }
-      ?>
+      <? include "pages/" . $page . ".php";?>
     </div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script>
+    $(() => {
+      <? if(isset($page_title)) {?>
+          $(".page_title").text("<?=$page_title?>").show();
+      <? }?>
+
+      <? if(isset($_SESSION["message"])) {
+          $alert_type = $_SESSION["message"];
+          $alert_msg = $_SESSION[$_SESSION["message"] . "_msg"];
+          unset($_SESSION[$_SESSION["message"] . "_msg"]);
+          unset($_SESSION["message"]);?>
+            $(".msg_box").addClass("alert-<?=$alert_type?>").text("<?=$alert_msg?>").show();
+      <? }?>
+    });
+  </script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
