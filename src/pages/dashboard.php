@@ -1,9 +1,14 @@
+<?
+$page_title = "Summary of Components";
+?>
+
 <div class="align_right font_small blue_link">Show Expiring Components</div>
 
 <div>
   <table class="main_table table table-bordered table-striped table-hover">
     <thead>
       <tr>
+        <th>SN</th>
         <th>Component</th>
         <th>Machine</th>
         <th>Fitted Date</th>
@@ -12,8 +17,10 @@
         <th>Show Detail</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
+        <td></td>
         <td>Component</td>
         <td>Machine</td>
         <td>Date</td>
@@ -23,6 +30,7 @@
       </tr>
 
       <tr>
+        <td></td>
         <td>Component</td>
         <td>Machine</td>
         <td>Date</td>
@@ -32,6 +40,7 @@
       </tr>
 
       <tr>
+        <td></td>
         <td>Component</td>
         <td>Machine</td>
         <td>Date</td>
@@ -41,6 +50,7 @@
       </tr>
 
       <tr>
+        <td></td>
         <td>Component</td>
         <td>Machine</td>
         <td>Date</td>

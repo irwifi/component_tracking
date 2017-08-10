@@ -197,6 +197,7 @@
 /* Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
   .main_table {
     margin-top: 10px;
+    counter-reset: Serial;
   }
 
   .main_table td {
@@ -207,6 +208,15 @@
     padding: 0px 12px;
     font-size: 15px;
     cursor: pointer;
+  }
+
+  .main_table tr td:first-child:before {
+    counter-increment: Serial;    /* Increment the Serial counter */
+    content: counter(Serial);     /* Display the counter */
+  }
+
+  .main_table .button_form {
+    display: inline-block;
   }
 /* Table <<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 

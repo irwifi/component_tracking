@@ -1,17 +1,19 @@
 <?
   if(isset($_POST["from_add_machine"]) && $_POST["from_add_machine"] === "AddMachine") {
     $machine = $_POST["machine"];
-
     if(!empty($machine)) {
-      $sql = "INSERT INTO tbl_machine (mac_name) VALUES ('" . $machine . "')";
-      $inserted = $conn->exec($sql);
+      $stmt = $conn->prepare("INSERT INTO tbl_machine (mac_name) VALUES (:mac_name)");
+      $stmt->bindParam(':mac_name', $machine);
+      $inserted = $stmt->execute();
+
       if($inserted > 0) {
         $_SESSION["message"] = "success";
-        $_SESSION["success_msg"] = "New Machine detail added";
+        $_SESSION[$_SESSION["message"] . "_msg"] = "1 New Machine detail added";
       }
     }
 
-    header("Location: index.php?page=list_manhine");
+    header("Location: index.php?page=list_machine");
+    exit;
   } else {
     $page_title = "Add New Machine";
   }
