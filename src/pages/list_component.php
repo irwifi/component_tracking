@@ -151,7 +151,7 @@
 
             ?></td>
             <td>
-              <input type="button" value="Edit Detail">
+              <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
               <form class="button_form" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">
                 <input type="hidden" name="form_cmp_del" value="ComponentDelete">
                 <input type="hidden" name="cmp_id" value="<?=$component["cmp_id"]?>">
@@ -167,8 +167,14 @@
 <script>
   $(() => {
     $(".delete_component").on("click", function() {
-      $(this).attr({"disabled": true});
-      $("#form_cmp_del_" + $(this).attr("data-id")).submit();
+      $('#myModal .modal-title').text("Component Delete Confirmation");
+      $('#myModal .modal-body p').text("Are you sure you want to delete all the details of this component?");
+      $('#myModal').modal();
+      var delete_id = $(this).attr("data-id");
+      $("#myModal .modal_action").on("click", function() {
+        $('#myModal').hide();
+        $("#form_cmp_del_" + delete_id).submit();
+      });
     });
   });
 </script>

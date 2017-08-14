@@ -37,6 +37,7 @@
 
     Enter Component detail
     <form id="form_add_component" method="post" action="index.php?page=add_component">
+      <div><span class="label">Component Name</span><input type="text" name="cmp_name" placeholder="Component Name"></div>
       <div>
         <span class="label">Component Class</span>
         <select name="cmp_class_id">
@@ -46,7 +47,6 @@
           <? }?>
         </select>
       </div>
-      <div><span class="label">Component Name</span><input type="text" name="cmp_name" placeholder="Component Name"></div>
       <div><span class="label">Component Type (Optional)</span><input type="text" name="cmp_type" placeholder="Component Type"></div>
       <div><span class="label">Vendor</span><input type="text" name="cmp_vendor" placeholder="Vendor"></div>
       <div><span class="label">Arrived Date</span><input type="text" name="cmp_arrival_on" placeholder="Arrived Date"></div>

@@ -47,12 +47,12 @@
             <td><?=$machine["mac_reg_no"]?></td>
             <td><?=$machine["mac_hours"]?></td>
             <td>
-              <a href="index.php?page=mac_detail&mac_id=<?=$machine["mac_id"]?>"><input type="button" value="Show Detail"></a>
+              <a href="index.php?page=machine_detail&mac_id=<?=$machine["mac_id"]?>"><input type="button" value="Show Detail"></a>
 
               <form class="button_form" id="form_mac_del_<?=$machine["mac_id"]?>" method="post" action="index.php?page=list_machine">
                 <input type="hidden" name="form_mac_del" value="MachineDelete">
                 <input type="hidden" name="mac_id" value="<?=$machine["mac_id"]?>">
-                <input type="button" value="Delete" class="delete_machine" data-id="<?=$machine["mac_id"]?>">
+                <input type="button" value="Delete" class="delete_machine" data-id="<?=$machine["mac_id"]?>" />
               </form>
             </td>
           </tr>
@@ -64,8 +64,14 @@
 <script>
   $(() => {
     $(".delete_machine").on("click", function() {
-      $(this).attr({"disabled": true});
-      $("#form_mac_del_" + $(this).attr("data-id")).submit();
+      $('#myModal .modal-title').text("Machine Delete Confirmation");
+      $('#myModal .modal-body p').text("Are you sure you want to delete all the details of this machine?");
+      $('#myModal').modal();
+      var delete_id = $(this).attr("data-id");
+      $("#myModal .modal_action").on("click", function() {
+        $('#myModal').hide();
+        $("#form_mac_del_" + delete_id).submit();
+      });
     });
   });
 </script>

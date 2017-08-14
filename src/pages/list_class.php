@@ -61,8 +61,14 @@
 <script>
   $(() => {
     $(".delete_class").on("click", function() {
-      $(this).attr({"disabled": true});
-      $("#form_cls_del_" + $(this).attr("data-id")).submit();
+       $('#myModal .modal-title').text("Component Class Delete Confirmation");
+      $('#myModal .modal-body p').text("Are you sure you want to delete all the details of this component class?");
+      $('#myModal').modal();
+      var delete_id = $(this).attr("data-id");
+      $("#myModal .modal_action").on("click", function() {
+        $('#myModal').hide();
+        $("#form_cls_del_" + delete_id).submit();
+      });
     });
   });
 </script>
