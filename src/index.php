@@ -70,9 +70,10 @@
                 <a href="index.php?page=list_machine"><div>Machine</div></a>
                 <a href="index.php?page=list_class"><div>Component Class</div></a>
                 <a href="index.php?page=list_component"><div>All Components</div></a>
-                <a href="index.php?page=list_component&comp_type=active"><div>Active Components</div></a>
-                <a href="index.php?page=list_component&comp_type=expired"><div>Expired Components</div></a>
-                <a href="index.php?page=list_component&comp_type=expiring"><div>Expiring Components</div></a>
+                <a href="index.php?page=list_component&status=active"><div>Active Components</div></a>
+                <a href="index.php?page=list_component&status=expired"><div>Expired Components</div></a>
+                <a href="index.php?page=list_component&status=expiring"><div>Expiring Components</div></a>
+                <a href="index.php?page=list_component&status=unfitted"><div>Unfitted Components</div></a>
                 <a href="index.php?page=list_hour_log"><div>Hour Log</div></a>
               </div>
             </div>

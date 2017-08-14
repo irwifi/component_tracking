@@ -8,18 +8,24 @@ cls_life_period (expected life unit period)
 tbl_machine:
 mac_id
 mac_name
+mac_type
+mac_reg_no
+mac_color
+mac_location
+mac_purchased_on
 mac_hours
 
 tbl_component:
 cmp_id
 cmp_class_id
-cmp_machine_id
+cmp_name
 cmp_type
 cmp_vendor
 cmp_arrival_on
 cmp_status (not fitted, fitted, nearing expiry, expiry crossed, expired)
 cmp_fitted_on
 cmp_fitted_by
+cmp_machine_id
 cmp_expired_on
 cmp_defect_type
 cmp_removed_by

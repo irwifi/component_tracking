@@ -17,7 +17,7 @@
   } else {
     $page_title = "List of Machines";
 
-    $stmt = $conn->prepare("SELECT mac_id, mac_name, mac_hours FROM tbl_machine");
+    $stmt = $conn->prepare("SELECT mac_id, mac_name, mac_type, mac_reg_no, mac_hours FROM tbl_machine order by mac_id");
     $stmt->execute();
 
     $mac_list = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -31,6 +31,8 @@
       <tr>
         <th>SN</th>
         <th>Machine</th>
+        <th>Type</th>
+        <th>Registration Number</th>
         <th>Hours Run</th>
         <th>Action</th>
       </tr>
@@ -41,9 +43,12 @@
           <tr>
             <td></td>
             <td><?=$machine["mac_name"]?></td>
+            <td><?=$machine["mac_type"]?></td>
+            <td><?=$machine["mac_reg_no"]?></td>
             <td><?=$machine["mac_hours"]?></td>
             <td>
-              <input type="button" value="Edit Detail">
+              <a href="index.php?page=mac_detail&mac_id=<?=$machine["mac_id"]?>"><input type="button" value="Show Detail"></a>
+
               <form class="button_form" id="form_mac_del_<?=$machine["mac_id"]?>" method="post" action="index.php?page=list_machine">
                 <input type="hidden" name="form_mac_del" value="MachineDelete">
                 <input type="hidden" name="mac_id" value="<?=$machine["mac_id"]?>">
