@@ -62,7 +62,7 @@
   $(() => {
     $("#btn_add_component").on("click", () => {
       $(".err_box").hide();
-      if($("#form_add_component select[name='cmp_class_id'] option:selected").val() === "0" || $("#form_add_component input[name='cmp_name']").val() === "" || $("#form_add_component input[name='cmp_vendor']").val() === "" || $("#form_add_component input[name='cmp_arrival_on']").val() === "") {
+      if($("#form_add_component select[name='cmp_class_id']").val() === "0" || $("#form_add_component input[name='cmp_name']").val() === "" || $("#form_add_component input[name='cmp_vendor']").val() === "" || $("#form_add_component input[name='cmp_arrival_on']").val() === "") {
         $(".err_box").show();
       } else {
         $("#form_add_component").submit();

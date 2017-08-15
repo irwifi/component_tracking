@@ -156,6 +156,7 @@
     font-size: 14px;
     border: 1px solid #CCF;
     border-radius: 2px;
+    z-index: 100;
   }
 
   #navbar .sub_menu div {
@@ -186,6 +187,7 @@
     font-weight: 500;
     color: #FFF;
     font-size: 22px;
+    margin-bottom: 20px;
   }
 
   .msg_box {

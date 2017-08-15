@@ -63,9 +63,9 @@
             </div>
             <div class="menu">Entry
               <div class="sub_menu">
-                <div>Hour Log Entry</div>
-                <div>Component Fitting</div>
-                <div>Component Unfitting</div>
+                <a href="index.php?page=hour_log_entry"><div>Hour Log Entry</div></a>
+                <a href="index.php?page=component_fitting"><div>Component Fitting</div></a>
+                <a href="index.php?page=component_unfitting"><div>Component Unfitting</div></a>
               </div>
             </div>
             <div class="menu">List & Search
