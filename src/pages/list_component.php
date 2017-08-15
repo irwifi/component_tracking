@@ -30,13 +30,13 @@
           $cond_select = ", c.cmp_arrival_on";
           break;
         case "active":
-          $status_cond = " and cmp_status = 2";
+          $status_cond = " and cmp_status = 2 and mac_id = cmp_machine_id";
           $page_title = "List of Active Components";
           $cond_select = ", c.cmp_fitted_on, m.mac_name";
           $cond_table = ", tbl_machine m";
           break;
         case "expiring":
-          $status_cond = " and (cmp_status = 3 or cmp_status = 4)";
+          $status_cond = " and (cmp_status = 3 or cmp_status = 4) and mac_id = cmp_machine_id";
           $page_title = "List of Expiring Components";
           $cond_select = ", cl.cls_life, m.mac_name";
           $cond_table = ", tbl_machine m";
@@ -135,21 +135,19 @@
               case 1:
                 echo "Unfitted";
                 break;
-              case 1:
+              case 2:
                 echo "Fitted";
                 break;
-              case 1:
+              case 3:
                 echo "Nearing Expected Life";
                 break;
-              case 1:
+              case 4:
                 echo "Expected Life Crossed";
                 break;
-              case 1:
+              case 5:
                 echo "Expired";
                 break;
-            }
-
-            ?></td>
+            }?></td>
             <td>
               <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
               <form class="button_form" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">

@@ -3,7 +3,7 @@
     $cmp_id = $_GET["cmp_id"];
     $page_title = "Machine Detail";
 
-    $stmt = $conn->prepare("SELECT cmp_id, cmp_name, cmp_class_id, cmp_type, cmp_vendor, cmp_arrival_on, cmp_status, cmp_fitted_on, cmp_fitted_by, cmp_machine_id, cmp_expired_on, cmp_defect_type, cmp_removed_by, cmp_used_hours FROM tbl_component where cmp_id = :cmp_id");
+    $stmt = $conn->prepare("SELECT cmp_id, cmp_name, cls_name, cmp_type, cmp_vendor, cmp_arrival_on, cmp_status, cmp_fitted_on, cmp_fitted_by, mac_name, cmp_expired_on, cmp_defect_type, cmp_removed_by, cmp_used_hours FROM tbl_component, tbl_class, tbl_machine where cmp_id = :cmp_id and cls_id = cmp_class_id and mac_id = cmp_machine_id");
     $stmt->bindParam(':cmp_id', $cmp_id);
     $selected = $stmt->execute();
 
@@ -20,16 +20,33 @@
   <div class="info_box">
     Detail of component CMP<?=$cmp_id?>
     <div><span class="label">Component Name</span><?=$cmp_info["cmp_name"]?></div>
-    <div><span class="label">Component Class</span><?=$cmp_info["cmp_class_id"]?></div>
+    <div><span class="label">Component Class</span><?=$cmp_info["cls_name"]?></div>
     <div><span class="label">Type</span><?=$cmp_info["cmp_type"]?></div>
     <div><span class="label">Vendor</span><?=$cmp_info["cmp_vendor"]?></div>
     <div><span class="label">Arrived Date</span><?=$cmp_info["cmp_arrival_on"]?></div>
-    <div><span class="label">Status</span><?=$cmp_info["cmp_status"]?></div>
+    <div><span class="label">Status</span><? switch($cmp_info["cmp_status"]) {
+        case 1:
+          echo "Unfitted";
+          break;
+        case 2:
+          echo "Fitted";
+          break;
+        case 3:
+          echo "Nearing Expected Life";
+          break;
+        case 4:
+          echo "Expected Life Crossed";
+          break;
+        case 5:
+          echo "Expired";
+          break;
+      }?>
+    </div>
     <input type="button" value="Edit Component Detail" />
     <? if($cmp_info["cmp_fitted_on"] !== "0000-00-00") {?>
       <div><span class="label">Fitted Date</span><?=$cmp_info["cmp_fitted_on"]?></div>
       <div><span class="label">Fitted By</span><?=$cmp_info["cmp_fitted_by"]?></div>
-      <div><span class="label">Machine</span><?=$cmp_info["cmp_machine_id"]?></div>
+      <div><span class="label">Machine</span><?=$cmp_info["mac_name"]?></div>
       <input type="button" value="Edit Fitting Detail" />
     <?}?>
 

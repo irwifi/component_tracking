@@ -1,10 +1,7 @@
 <?
   $page_title = "Summary of Components";
-  $status_cond = " and cmp_status = 2";
-  $cond_select = ", c.cmp_fitted_on, m.mac_name";
-  $cond_table = ", tbl_machine m";
 
-  $qry = "SELECT c.cmp_id, cl.cls_name, c.cmp_name, c.cmp_type, c.cmp_vendor, c.cmp_status " . $cond_select . " FROM tbl_component c, tbl_class cl " . $cond_table . " where cl.cls_id = c.cmp_class_id" . $status_cond . " order by cmp_id";
+  $qry = "SELECT c.cmp_id, cl.cls_name, c.cmp_name, c.cmp_status, cmp_used_hours, m.mac_name FROM tbl_component c, tbl_class cl, tbl_machine m where cl.cls_id = c.cmp_class_id and cmp_status = 2 and mac_id = cmp_machine_id order by cmp_id";
   $stmt = $conn->prepare($qry);
   $stmt->execute();
 
@@ -17,8 +14,7 @@
   <div style="color:#F00;">
     <h4>Features yet to come</h4>
     <ul>
-      <li>Fitting of component</li>
-      <li>Unfitting of component</li>
+      <li>Component Unfitting</li>
       <li>Warning of expiring component</li>
       <li>Detecting premature expiry of components</li>
       <li>Edit machine detail</li>
@@ -51,6 +47,7 @@
       <li>Smart message alerting after operations like add, update, delete</li>
       <li>Modal based delete confirmation</li>
       <li>Smart hour calculation for components</li>
+      <li>Component Fitting</li>
     </ul>
   </div>
   </div>
@@ -64,12 +61,10 @@
           <th>SN</th>
           <th>Component Id</th>
           <th>Component Name</th>
-          <th>Component Class</th>
-          <th>Component Type</th>
-          <th>Vendor</th>
-          <th>Fitted Date</th>
           <th>Machine</th>
           <th>Status</th>
+          <th>Hours Used</th>
+          <th>Show Detail</th>
         </tr>
       </thead>
 
@@ -79,36 +74,28 @@
               <td></td>
               <td>CMP<?=$component["cmp_id"]?></td>
               <td><?=$component["cmp_name"]?></td>
-              <td><?=$component["cls_name"]?></td>
-              <td><?=$component["cmp_type"]?></td>
-              <td><?=$component["cmp_vendor"]?></td>
-              <td><?=$component["cmp_fitted_on"]?></td>
               <td><?=$component["mac_name"]?></td>
               <td><? switch($component["cmp_status"]) {
                 case 1:
                   echo "Unfitted";
                   break;
-                case 1:
+                case 2:
                   echo "Fitted";
                   break;
-                case 1:
+                case 3:
                   echo "Nearing Expected Life";
                   break;
-                case 1:
+                case 4:
                   echo "Expected Life Crossed";
                   break;
-                case 1:
+                case 5:
                   echo "Expired";
                   break;
               }
               ?></td>
+              <td><?=$component["cmp_used_hours"]?></td>
               <td>
                 <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
-                <form class="button_form" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">
-                  <input type="hidden" name="form_cmp_del" value="ComponentDelete">
-                  <input type="hidden" name="cmp_id" value="<?=$component["cmp_id"]?>">
-                  <input type="button" value="Delete" class="delete_component" data-id="<?=$component["cmp_id"]?>">
-                </form>
               </td>
             </tr>
         <? }?>

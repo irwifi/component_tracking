@@ -10,7 +10,7 @@
       if($inserted > 0) {
         $_SESSION["message"] = "success";
         $_SESSION[$_SESSION["message"] . "_msg"] = "1 new Component Class detail added";
-         header("Location: index.php?page=list_class");
+        header("Location: index.php?page=list_class");
       }
       // there was some error
     } else {

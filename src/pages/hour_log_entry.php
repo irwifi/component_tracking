@@ -23,7 +23,6 @@
         $stmt->execute();
 
         header("Location: index.php?page=list_hour_log");
-        exit;
       }
       // there was some error
     } else {

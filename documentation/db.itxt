@@ -26,6 +26,8 @@ cmp_status (not fitted, fitted, nearing expiry, expiry crossed, expired)
 cmp_fitted_on
 cmp_fitted_by
 cmp_machine_id
+cmp_fitted_hour
+cmp_expired_hour
 cmp_expired_on
 cmp_defect_type
 cmp_removed_by
