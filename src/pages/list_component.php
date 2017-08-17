@@ -32,7 +32,7 @@
         case "active":
           $status_cond = " and cmp_status = 2 and mac_id = cmp_machine_id";
           $page_title = "List of Active Components";
-          $cond_select = ", c.cmp_fitted_on, m.mac_name";
+          $cond_select = ", c.cmp_used_hours, m.mac_name";
           $cond_table = ", tbl_machine m";
           break;
         case "expiring":
@@ -66,18 +66,17 @@
         <th>Component Id</th>
         <th>Component Name</th>
         <th>Component Class</th>
-        <th>Component Type</th>
-        <th>Vendor</th>
+        <th>Status</th>
         <? switch($listing_type) {
           case "unfitted":
             ?>
               <th>Arrived Date</th>
             <?
             break;
-          case "fitted":
+          case "active":
             ?>
-              <th>Fitted Date</th>
               <th>Machine</th>
+              <th>Used Hours</th>
             <?
             break;
           case "expiring":
@@ -92,7 +91,7 @@
             <?
             break;
         }?>
-        <th>Status</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -103,34 +102,6 @@
             <td>CMP<?=$component["cmp_id"]?></td>
             <td><?=$component["cmp_name"]?></td>
             <td><?=$component["cls_name"]?></td>
-            <td><?=$component["cmp_type"]?></td>
-            <td><?=$component["cmp_vendor"]?></td>
-
-            <? switch($listing_type) {
-              case "unfitted":
-                ?>
-                  <td><?=$component["cmp_arrival_on"]?></td>
-                <?
-                break;
-              case "fitted":
-                ?>
-                  <td><?=$component["cmp_fitted_on"]?></td>
-                  <td><?=$component["mac_name"]?></td>
-                <?
-                break;
-              case "expiring":
-                ?>
-                  <td><?=$component["cls_life"]?></td>
-                  <td><?=$component["mac_name"]?></td>
-                <?
-                break;
-              case "expired":
-                ?>
-                  <td><?=$component["cmp_expired_on"]?></td>
-                <?
-                break;
-            }?>
-
             <td><? switch($component["cmp_status"]) {
               case 1:
                 echo "Unfitted";
@@ -148,6 +119,31 @@
                 echo "Expired";
                 break;
             }?></td>
+
+            <? switch($listing_type) {
+              case "unfitted":
+                ?>
+                  <td><?=$component["cmp_arrival_on"]?></td>
+                <?
+                break;
+              case "active":
+                ?>
+                  <td><?=$component["mac_name"]?></td>
+                  <td><?=$component["cmp_used_hours"]?></td>
+                <?
+                break;
+              case "expiring":
+                ?>
+                  <td><?=$component["cls_life"]?></td>
+                  <td><?=$component["mac_name"]?></td>
+                <?
+                break;
+              case "expired":
+                ?>
+                  <td><?=$component["cmp_expired_on"]?></td>
+                <?
+                break;
+            }?>
             <td>
               <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
               <form class="button_form" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">

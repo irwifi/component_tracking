@@ -47,7 +47,7 @@
             <td><?=$log["log_entry_by"]?></td>
             <td><?=$log["log_hours"]?></td>
             <td>
-              <input type="button" value="Edit Detail">
+              <a href="index.php?page=hour_log_entry&action=edit&log_id=<?=$log["log_id"]?>"><input type="button" value="Edit Detail"></a>
               <form class="button_form" id="form_log_del_<?=$log["log_id"]?>" method="post" action="index.php?page=list_hour_log">
                 <input type="hidden" name="form_log_del" value="LogDelete">
                 <input type="hidden" name="log_id" value="<?=$log["log_id"]?>">

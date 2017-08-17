@@ -49,7 +49,7 @@
       </div>
       <div><span class="label">Component Type (Optional)</span><input type="text" name="cmp_type" placeholder="Component Type"></div>
       <div><span class="label">Vendor</span><input type="text" name="cmp_vendor" placeholder="Vendor"></div>
-      <div><span class="label">Arrived Date</span><input type="text" name="cmp_arrival_on" placeholder="Arrived Date"></div>
+      <div class="datepicker"><span class="label">Arrived Date</span><input type="text" name="cmp_arrival_on" placeholder="Arrived Date"></div>
       <div>
         <input type="hidden" name="from_add_component" value="AddComponent">
         <input type="button" id="btn_add_component" value="Add Component">

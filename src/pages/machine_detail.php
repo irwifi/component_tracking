@@ -26,6 +26,6 @@
     <div><span class="label">Current Location</span><?=$mac_info["mac_location"]?></div>
     <div><span class="label">Purchased Date</span><?=$mac_info["mac_purchased_on"]?></div>
     <div><span class="label">Hours Run</span><?=$mac_info["mac_hours"]?></div>
-    <input type="button" value="Edit Detail" />
+    <a href="index.php?page=add_machine&action=edit&mac_id=<?=$mac_info["mac_id"]?>"><input type="button" value="Edit Detail" /></a>
   </div>
 </div>

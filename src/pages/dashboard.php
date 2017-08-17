@@ -13,25 +13,28 @@
   <div class="col-3">
   <div style="color:#F00;">
     <h4>Features yet to come</h4>
-    <ul>
+    <ol>
       <li>Component Unfitting</li>
       <li>Warning of expiring component</li>
       <li>Detecting premature expiry of components</li>
-      <li>Edit machine detail</li>
-      <li>Edit component class detail</li>
       <li>Edit component detail</li>
-    </ul>
+      <li>Prevent referenced record deletion</li>
+      <li>Pagination of table data</li>
+      <li>Syncing component used hour with machine</li>
+    </ol>
   </div>
 
   <div>
     <h4>Features</h4>
-    <ul>
+    <ol>
       <li>Adding new machine</li>
       <li>Showing list of machines</li>
       <li>Showing detail of a machine</li>
+      <li>Edit machine detail</li>
       <li>Deleting a machine</li>
       <li>Adding new component class</li>
       <li>Showing list of component classes</li>
+      <li>Edit component class detail</li>
       <li>Deleting a component class</li>
       <li>Adding new component</li>
       <li>Showing list of all components</li>
@@ -43,12 +46,14 @@
       <li>Deleting a component</li>
       <li>Entering hour log</li>
       <li>Showing list of log records</li>
+      <li>Edit hour log</li>
       <li>Deleting log entry</li>
       <li>Smart message alerting after operations like add, update, delete</li>
       <li>Modal based delete confirmation</li>
       <li>Smart hour calculation for components</li>
       <li>Component Fitting</li>
-    </ul>
+      <li>Date Picker for dates</li>
+    </ol>
   </div>
   </div>
 

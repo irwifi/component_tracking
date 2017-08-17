@@ -21,11 +21,15 @@
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Iceland' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/flatpickr_date/flatpickr.min.css">
   <link rel="stylesheet" href="public/css/index.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="plugins/flatpickr_date/flatpickr.min.js"></script>
 </head>
 
 <body>
@@ -113,6 +117,11 @@
 
   <script>
     $(() => {
+    // applying datepicker <<<<<<<<<<
+      $(".datepicker input").attr("data-input", "");
+      $(".datepicker").append('<a class="input-button" title="toggle" data-toggle><i class="fa fa-calendar" aria-hidden="true"></i></a><a class="input-button" title="clear" data-clear><i class="fa fa-times" aria-hidden="true"></i></a>').flatpickr({wrap: true});
+    // applying datepicker >>>>>>>>>>
+
       <? if(isset($page_title)) {?>
           $(".page_title").text("<?=$page_title?>").show();
       <? }?>

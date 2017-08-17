@@ -6,7 +6,7 @@
       $stmt->bindParam(':fitted_on', $_POST["cmp_fitted_on"]);
       $stmt->bindParam(':fitted_by', $_POST["cmp_fitted_by"]);
       $stmt->bindParam(':mac_id', $_POST["mac_id"]);
-      $stmt->bindParam(':fitted_hour', $_POST["fitted_hour"]);
+      $stmt->bindParam(':fitted_hour', $_POST["cmp_fitted_hour"]);
       $updated = $stmt->execute();
 
       if($updated > 0) {
@@ -63,7 +63,7 @@
       </div>
 
       <div><span class="label">Reading on hour meter</span><input type="text" name="cmp_fitted_hour" placeholder="Hour Meter Reading"></div>
-      <div><span class="label">Fitted Date</span><input type="text" name="cmp_fitted_on" placeholder="Fitted Date"></div>
+      <div class="datepicker"><span class="label">Fitted Date</span><input type="text" name="cmp_fitted_on" placeholder="Fitted Date"></div>
       <div><span class="label">Fitted By</span><input type="text" name="cmp_fitted_by" placeholder="Fitted By"></div>
       <div>
         <input type="hidden" name="form_component_fitting" value="ComponentFitting">

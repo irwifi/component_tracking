@@ -289,3 +289,19 @@
     margin: 6px 0 12px;
   }
 /* Info Box <<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* Date Picker <<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+.flatpickr-calendar {
+  box-shadow: 1px 0 0 #888, -1px 0 0 #888, 0 1px 0 #888, 0 -1px 0 #888, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+.input-button {
+  display: inline-block;
+  border: thin solid #A9A9A9;
+  padding: 1px 7px 3px 8px;
+}
+
+.input-button i {
+  color: #A9A9A9;;
+}
+/* Date Picker >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/

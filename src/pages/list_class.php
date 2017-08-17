@@ -45,7 +45,7 @@
             <td><?=$class["cls_supplier"]?></td>
             <td><?=$class["cls_life"]?></td>
             <td>
-              <input type="button" value="Edit Detail">
+              <a href="index.php?page=add_class&action=edit&cls_id=<?=$class["cls_id"]?>"><input type="button" value="Edit Detail"></a>
               <form class="button_form" id="form_cls_del_<?=$class["cls_id"]?>" method="post" action="index.php?page=list_class">
                 <input type="hidden" name="form_cls_del" value="ClassDelete">
                 <input type="hidden" name="cls_id" value="<?=$class["cls_id"]?>">
