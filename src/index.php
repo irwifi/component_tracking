@@ -117,22 +117,24 @@
 
   <script>
     $(() => {
-    // applying datepicker <<<<<<<<<<
-      $(".datepicker input").attr("data-input", "");
-      $(".datepicker").append('<a class="input-button" title="toggle" data-toggle><i class="fa fa-calendar" aria-hidden="true"></i></a><a class="input-button" title="clear" data-clear><i class="fa fa-times" aria-hidden="true"></i></a>').flatpickr({wrap: true});
-    // applying datepicker >>>>>>>>>>
+    // Applying datepicker <<<<<<<<<<
+        $(".datepicker input").attr("data-input", "");
+        $(".datepicker").append('<a class="input-button" title="toggle" data-toggle><i class="fa fa-calendar" aria-hidden="true"></i></a><a class="input-button" title="clear" data-clear><i class="fa fa-times" aria-hidden="true"></i></a>').flatpickr({wrap: true});
+    // Applying datepicker >>>>>>>>>>
 
       <? if(isset($page_title)) {?>
           $(".page_title").text("<?=$page_title?>").show();
       <? }?>
 
-      <? if(isset($_SESSION["message"])) {
-          $alert_type = $_SESSION["message"];
-          $alert_msg = $_SESSION[$_SESSION["message"] . "_msg"];
-          unset($_SESSION[$_SESSION["message"] . "_msg"]);
-          unset($_SESSION["message"]);?>
-            $(".msg_box").addClass("alert-<?=$alert_type?>").text("<?=$alert_msg?>").show();
-      <? }?>
+	// Applying session message <<<<<<<<<<
+        <? if(isset($_SESSION["message"])) {
+            $alert_type = $_SESSION["message"];
+            $alert_msg = $_SESSION[$_SESSION["message"] . "_msg"];
+            unset($_SESSION[$_SESSION["message"] . "_msg"]);
+            unset($_SESSION["message"]);?>
+              $(".msg_box").addClass("alert-<?=$alert_type?>").text("<?=$alert_msg?>").show();
+        <? }?>
+	// Applying session message >>>>>>>>>>
     });
   </script>
 </body>

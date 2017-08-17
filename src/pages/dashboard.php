@@ -1,7 +1,7 @@
 <?
   $page_title = "Summary of Components";
 
-  $qry = "SELECT c.cmp_id, cl.cls_name, c.cmp_name, c.cmp_status, cmp_used_hours, m.mac_name FROM tbl_component c, tbl_class cl, tbl_machine m where cl.cls_id = c.cmp_class_id and cmp_status = 2 and mac_id = cmp_machine_id order by cmp_id";
+  $qry = "SELECT c.cmp_id, cl.cls_name, c.cmp_name, c.cmp_status, cmp_used_hours, m.mac_name FROM tbl_component c, tbl_class cl, tbl_machine m where cl.cls_id = c.cmp_class_id and cmp_status in (2, 3, 4) and mac_id = cmp_machine_id order by cmp_id";
   $stmt = $conn->prepare($qry);
   $stmt->execute();
 
@@ -14,7 +14,6 @@
   <div style="color:#F00;">
     <h4>Features yet to come</h4>
     <ol>
-      <li>Component Unfitting</li>
       <li>Warning of expiring component</li>
       <li>Detecting premature expiry of components</li>
       <li>Edit component detail</li>
@@ -53,6 +52,7 @@
       <li>Smart hour calculation for components</li>
       <li>Component Fitting</li>
       <li>Date Picker for dates</li>
+      <li>Component Unfitting</li>
     </ol>
   </div>
   </div>
