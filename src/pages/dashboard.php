@@ -1,110 +1,94 @@
 <?
-  $page_title = "Summary of Components";
-
-  $qry = "SELECT c.cmp_id, cl.cls_name, c.cmp_name, c.cmp_status, cmp_used_hours, m.mac_name FROM tbl_component c, tbl_class cl, tbl_machine m where cl.cls_id = c.cmp_class_id and cmp_status in (2, 3, 4) and mac_id = cmp_machine_id order by cmp_id";
-  $stmt = $conn->prepare($qry);
-  $stmt->execute();
-
-  $cmp_list = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  $cmp_list = $stmt->fetchAll();
+  $page_title = "Admin Dashboard";
 ?>
 
+<!-- BEGIN DASHBOARD STATS 1-->
 <div class="row">
-  <div class="col-3">
-  <div style="color:#F00;">
-    <h4>Features yet to come</h4>
-    <ol>
-      <li>Warning of expiring component</li>
-      <li>Detecting premature expiry of components</li>
-      <li>Edit component detail</li>
-      <li>Prevent referenced record deletion</li>
-      <li>Pagination of table data</li>
-      <li>Syncing component used hour with machine</li>
-    </ol>
-  </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
+            <div class="visual">
+                <i class="fa fa-comments"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup" data-value="126">0</span>
+                </div>
+                <div class="desc"> Machines </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+            <div class="visual">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup" data-value="419">0</span></div>
+                <div class="desc"> Active Components </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup" data-value="174">0</span>
+                </div>
+                <div class="desc"> Unfitted Components </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+            <div class="visual">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup" data-value="89"></span></div>
+                <div class="desc"> Expired Components </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- END DASHBOARD STATS 1-->
 
-  <div>
-    <h4>Features</h4>
-    <ol>
-      <li>Adding new machine</li>
-      <li>Showing list of machines</li>
-      <li>Showing detail of a machine</li>
-      <li>Edit machine detail</li>
-      <li>Deleting a machine</li>
-      <li>Adding new component class</li>
-      <li>Showing list of component classes</li>
-      <li>Edit component class detail</li>
-      <li>Deleting a component class</li>
-      <li>Adding new component</li>
-      <li>Showing list of all components</li>
-      <li>Showing list of unfitted components</li>
-      <li>Showing list of active components</li>
-      <li>Showing list of expiring components</li>
-      <li>Showing list of expired components</li>
-      <li>Showing detail of a component</li>
-      <li>Deleting a component</li>
-      <li>Entering hour log</li>
-      <li>Showing list of log records</li>
-      <li>Edit hour log</li>
-      <li>Deleting log entry</li>
-      <li>Smart message alerting after operations like add, update, delete</li>
-      <li>Modal based delete confirmation</li>
-      <li>Smart hour calculation for components</li>
-      <li>Component Fitting</li>
-      <li>Date Picker for dates</li>
-      <li>Component Unfitting</li>
-    </ol>
-  </div>
-  </div>
 
-  <div class="col-9">
-    <div class="align_right font_small blue_link"><a href="index.php?page=list_component&status=expiring">Show Expiring Components</a></div>
-
-    <table class="main_table table table-bordered table-striped table-hover">
-      <thead>
-        <tr>
-          <th>SN</th>
-          <th>Component Id</th>
-          <th>Component Name</th>
-          <th>Machine</th>
-          <th>Status</th>
-          <th>Hours Used</th>
-          <th>Show Detail</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <? foreach($cmp_list as $component) {?>
-            <tr>
-              <td></td>
-              <td>CMP<?=$component["cmp_id"]?></td>
-              <td><?=$component["cmp_name"]?></td>
-              <td><?=$component["mac_name"]?></td>
-              <td><? switch($component["cmp_status"]) {
-                case 1:
-                  echo "Unfitted";
-                  break;
-                case 2:
-                  echo "Fitted";
-                  break;
-                case 3:
-                  echo "Nearing Expected Life";
-                  break;
-                case 4:
-                  echo "Expected Life Crossed";
-                  break;
-                case 5:
-                  echo "Expired";
-                  break;
-              }
-              ?></td>
-              <td><?=$component["cmp_used_hours"]?></td>
-              <td>
-                <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
-              </td>
-            </tr>
-        <? }?>
-      </tbody>
-    </table>
-  </div>
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption ">
+            <span class="caption-subject font-dark bold uppercase">Component By Status</span>
+            <span class="caption-helper">component stats...</span>
+        </div>
+        <div class="actions">
+            <div class="btn-group">
+                <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="javascript:;"> Option 1</a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="javascript:;">Option 2</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Option 3</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Option 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div id="dashboard_amchart_4" class="CSSAnimationChart"></div>
+    </div>
 </div>
