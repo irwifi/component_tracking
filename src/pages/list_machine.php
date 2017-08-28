@@ -29,7 +29,7 @@
   <table class="main_table table table-bordered table-striped table-hover">
     <thead>
       <tr>
-        <th>SN</th>
+        <th>#</th>
         <th>Machine</th>
         <th>Type</th>
         <th>Registration Number</th>
@@ -39,20 +39,20 @@
     </thead>
 
     <tbody>
-      <? foreach($mac_list as $machine) {?>
+      <? $count =0; foreach($mac_list as $machine) {$count++; ?>
           <tr>
-            <td></td>
+            <td><?=$count?></td>
             <td><?=$machine["mac_name"]?></td>
             <td><?=$machine["mac_type"]?></td>
             <td><?=$machine["mac_reg_no"]?></td>
             <td><?=$machine["mac_hours"]?></td>
             <td>
-              <a href="index.php?page=machine_detail&mac_id=<?=$machine["mac_id"]?>"><input type="button" value="Show Detail"></a>
+              <a href="index.php?page=machine_detail&mac_id=<?=$machine["mac_id"]?>" class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-share"></i> View </a>
 
-              <form class="button_form" id="form_mac_del_<?=$machine["mac_id"]?>" method="post" action="index.php?page=list_machine">
+              <form class="button_form inline" id="form_mac_del_<?=$machine["mac_id"]?>" method="post" action="index.php?page=list_machine">
                 <input type="hidden" name="form_mac_del" value="MachineDelete">
                 <input type="hidden" name="mac_id" value="<?=$machine["mac_id"]?>">
-                <input type="button" value="Delete" class="delete_machine" data-id="<?=$machine["mac_id"]?>" />
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black delete_machine" data-id="<?=$machine["mac_id"]?>"><i class="fa fa-trash-o"></i> Delete </a>
               </form>
             </td>
           </tr>

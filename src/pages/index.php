@@ -54,6 +54,8 @@
           <? include "../../template/footer.html";?>
         </div>
 
+        <? include "../../template/modal.html";?>
+
       <? include "../../template/scripts.html";?>
     </body>
 </html>

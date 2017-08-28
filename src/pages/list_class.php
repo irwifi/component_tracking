@@ -29,7 +29,7 @@
   <table class="main_table table table-bordered table-striped table-hover">
     <thead>
       <tr>
-        <th>SN</th>
+        <th>#</th>
         <th>Component Class Name</th>
         <th>Supplier</th>
         <th>Expected Life (in Hours)</th>
@@ -38,18 +38,19 @@
     </thead>
 
     <tbody>
-      <? foreach($cls_list as $class) {?>
+      <? $count =0; foreach($cls_list as $class) {$count++; ?>
           <tr>
-            <td></td>
+            <td><?=$count?></td>
             <td><?=$class["cls_name"]?></td>
             <td><?=$class["cls_supplier"]?></td>
             <td><?=$class["cls_life"]?></td>
             <td>
-              <a href="index.php?page=add_class&action=edit&cls_id=<?=$class["cls_id"]?>"><input type="button" value="Edit Detail"></a>
-              <form class="button_form" id="form_cls_del_<?=$class["cls_id"]?>" method="post" action="index.php?page=list_class">
+              <a href="index.php?page=add_class&action=edit&cls_id=<?=$class["cls_id"]?>" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-edit"></i> Edit</a>
+
+              <form class="button_form inline" id="form_cls_del_<?=$class["cls_id"]?>" method="post" action="index.php?page=list_class">
                 <input type="hidden" name="form_cls_del" value="ClassDelete">
                 <input type="hidden" name="cls_id" value="<?=$class["cls_id"]?>">
-                <input type="button" value="Delete" class="delete_class" data-id="<?=$class["cls_id"]?>">
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black delete_class" data-id="<?=$class["cls_id"]?>"><i class="fa fa-trash-o"></i> Delete </a>
               </form>
             </td>
           </tr>

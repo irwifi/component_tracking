@@ -62,7 +62,7 @@
   <table class="main_table table table-bordered table-striped table-hover">
     <thead>
       <tr>
-        <th>SN</th>
+        <th>#</th>
         <th>Component Id</th>
         <th>Component Name</th>
         <th>Component Class</th>
@@ -96,9 +96,9 @@
     </thead>
 
     <tbody>
-      <? foreach($cmp_list as $component) {?>
+      <? $count =0; foreach($cmp_list as $component) {$count++; ?>
           <tr>
-            <td></td>
+            <td><?=$count?></td>
             <td>CMP<?=$component["cmp_id"]?></td>
             <td><?=$component["cmp_name"]?></td>
             <td><?=$component["cls_name"]?></td>
@@ -145,11 +145,12 @@
                 break;
             }?>
             <td>
-              <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>"><input type="button" value="Show Detail"></a>
-              <form class="button_form" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">
+              <a href="index.php?page=component_detail&cmp_id=<?=$component["cmp_id"]?>" class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-share"></i> View </a>
+
+              <form class="button_form inline" id="form_cmp_del_<?=$component["cmp_id"]?>" method="post" action="index.php?page=list_component">
                 <input type="hidden" name="form_cmp_del" value="ComponentDelete">
                 <input type="hidden" name="cmp_id" value="<?=$component["cmp_id"]?>">
-                <input type="button" value="Delete" class="delete_component" data-id="<?=$component["cmp_id"]?>">
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black delete_component" data-id="<?=$component["cmp_id"]?>"><i class="fa fa-trash-o"></i> Delete </a>
               </form>
             </td>
           </tr>

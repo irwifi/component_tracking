@@ -29,7 +29,7 @@
   <table class="main_table table table-bordered table-striped table-hover">
     <thead>
       <tr>
-        <th>SN</th>
+        <th>#</th>
         <th>Machine</th>
         <th>Entry Date</th>
         <th>Entered By</th>
@@ -39,19 +39,20 @@
     </thead>
 
     <tbody>
-      <? foreach($log_list as $log) {?>
+      <? $count =0; foreach($log_list as $log) {$count++; ?>
           <tr>
-            <td></td>
+            <td><?=$count?></td>
             <td><?=$log["mac_name"]?></td>
             <td><?=$log["log_entry_on"]?></td>
             <td><?=$log["log_entry_by"]?></td>
             <td><?=$log["log_hours"]?></td>
             <td>
-              <a href="index.php?page=hour_log_entry&action=edit&log_id=<?=$log["log_id"]?>"><input type="button" value="Edit Detail"></a>
-              <form class="button_form" id="form_log_del_<?=$log["log_id"]?>" method="post" action="index.php?page=list_hour_log">
+              <a href="index.php?page=hour_log_entry&action=edit&log_id=<?=$log["log_id"]?>" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-edit"></i> Edit</a>
+
+              <form class="button_form inline" id="form_log_del_<?=$log["log_id"]?>" method="post" action="index.php?page=list_hour_log">
                 <input type="hidden" name="form_log_del" value="LogDelete">
                 <input type="hidden" name="log_id" value="<?=$log["log_id"]?>">
-                <input type="button" value="Delete" class="delete_log" data-id="<?=$log["log_id"]?>">
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black delete_log" data-id="<?=$log["log_id"]?>"><i class="fa fa-trash-o"></i> Delete </a>
               </form>
             </td>
           </tr>
