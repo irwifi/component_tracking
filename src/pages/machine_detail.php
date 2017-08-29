@@ -112,7 +112,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <a href="index.php?page=add_machine&action=edit&mac_id=<?=$mac_info["mac_id"]?>">
-                                  <button type="submit" class="btn green">
+                                  <button type="button" class="btn green">
                                     <i class="fa fa-pencil"></i> Edit
                                   </button>
                                 </a>

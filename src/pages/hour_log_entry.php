@@ -65,43 +65,78 @@
   }
 ?>
 
-<div>
-  <div class="form_box">
-    <ul class="err_box">
-      <li>Enter complete detail</li>
-    </ul>
-
-    <form id="form_hour_log_entry" method="post" action="index.php?page=hour_log_entry">
-      <div>Enter machine hour log</div>
-      <div>
-        <span class="label">Machine</span>
-        <select name="log_machine_id">
-          <option value="0">Select the Machine</option>
-          <? foreach($mac_list as $machine) {?>
-            <option value="<?=$machine['mac_id']?>" <? if($machine['mac_id'] == $log_info["log_machine_id"]) {echo "selected=true";}?>><?=$machine['mac_name']?></option>
-          <? }?>
-        </select>
+<div class="portlet light bordered">
+  <div class="portlet-title">
+      <div class="caption">
+          <i class="icon-equalizer font-red-sunglo"></i>
+          <span class="caption-subject font-red-sunglo bold uppercase">Hour Log</span>
+          <span class="caption-helper">enter hour log info</span>
       </div>
-      <div class="datepicker"><span class="label">Entry Date</span><input type="text" name="log_entry_on" placeholder="Entry Date" value="<?=$log_info["log_entry_on"]?>"></div>
-      <div><span class="label">Hours</span><input type="text" name="log_hours" placeholder="Hours" value="<?=$log_info["log_hours"]?>"></div>
-      <div><span class="label">Entered By</span><input type="text" name="log_entry_by" placeholder="Entered By" value="<?=$log_info["log_entry_by"]?>"></div>
-      <input type="hidden" name="form_hour_log_entry" value="HourLogEntry">
-      <input type="hidden" name="log_id" value="<?=$log_info["log_id"]?>">
-      <input type="hidden" name="log_action" value="<?=$log_info["log_action"]?>">
-      <input type="button" id="btn_hour_log_entry" value="<?=$log_info["log_button"]?>">
-    </form>
+  </div>
+
+  <div class="portlet-body">
+      <!-- BEGIN FORM-->
+        <form id="form_hour_log_entry" class="form-horizontal" method="post" action="index.php?page=hour_log_entry">
+            <div class="form-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> You have some form errors. Please check below.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button> Your form validation is successful!
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Machine</label>
+                    <div class="col-md-4">
+                      <select class="form-control" name="log_machine_id">
+                        <option value="">Select the Machine</option>
+                        <? foreach($mac_list as $machine) {?>
+                          <option value="<?=$machine['mac_id']?>"><?=$machine['mac_name']?></option>
+                        <? }?>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group last">
+                    <label class="col-md-3 control-label">Entry Date</label>
+                    <div class="col-md-4">
+                      <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+                          <input type="text" name="log_entry_on" class="form-control" placeholder="Entry Date" readonly>
+                          <span class="input-group-btn">
+                              <button class="btn default" type="button">
+                                  <i class="fa fa-calendar"></i>
+                              </button>
+                          </span>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Hours</label>
+                    <div class="col-md-4">
+                        <input type="text" name="log_hours" class="form-control" placeholder="Hours">
+                    </div>
+                </div>
+
+                <div class="form-group last">
+                    <label class="col-md-3 control-label">Entered By</label>
+                    <div class="col-md-4">
+                        <input type="text" name="log_entry_by" class="form-control" placeholder="Entered By">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="hidden" name="form_hour_log_entry" value="HourLogEntry">
+                        <input type="hidden" name="log_id" value="<?=$log_info["log_id"]?>">
+                        <input type="hidden" name="log_action" value="<?=$log_info["log_action"]?>">
+                        <button type="submit" id="btn_hour_log_entry" class="btn btn-circle green">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+      <!-- END FORM-->
   </div>
 </div>
-
-<script>
-  $(() => {
-    $("#btn_hour_log_entry").on("click", () => {
-      $(".err_box").hide();
-      if($("#form_hour_log_entry select[name='log_machine_id'] option:selected").val() === "0" || $("#form_hour_log_entry input[name='log_entry_on']").val() === "" || $("#form_hour_log_entry input[name='log_hours']").val() === "" || $("#form_hour_log_entry input[name='log_entry_by']").val() === "") {
-        $(".err_box").show();
-      } else {
-        $("#form_hour_log_entry").submit();
-      }
-    });
-  });
-</script>

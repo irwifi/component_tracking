@@ -1,12 +1,14 @@
 <?
-  if(isset($_POST["from_add_class"]) && $_POST["from_add_class"] === "AddClass") {
+  if(isset($_POST["form_add_class"]) && $_POST["form_add_class"] === "AddClass") {
     if(!empty($_POST["cls_name"])) {
       if($_POST["cls_action"] === "add") {
         $stmt = $conn->prepare("INSERT INTO tbl_class (cls_name, cls_supplier, cls_life) VALUES (:cls_name, :cls_supplier, :cls_life)");
+        $action_title = "COMPONENT CLASS ADDED";
         $action_msg = "1 new Component Class detail added";
       } else {
         $stmt = $conn->prepare("UPDATE tbl_class SET cls_name = :cls_name, cls_supplier = :cls_supplier, cls_life = :cls_life WHERE cls_id = :cls_id");
         $stmt->bindParam(':cls_id', $_POST["cls_id"]);
+        $action_title = "COMPONENT CLASS EDITED";
         $action_msg = "1 Component Class detail edited";
       }
 
@@ -16,8 +18,9 @@
       $inserted = $stmt->execute();
 
       if($inserted > 0) {
-        $_SESSION["message"] = "success";
-        $_SESSION[$_SESSION["message"] . "_msg"] = $action_msg;
+        $_SESSION["alert"] = "success";
+        $_SESSION["alert_title"] = $action_title;
+        $_SESSION["alert_msg"] = $action_msg;
         header("Location: index.php?page=list_class");
       }
       // there was some error
@@ -41,35 +44,111 @@
   }
 ?>
 
-<div>
-  <div class="form_box">
-    <ul class="err_box">
-      <li>Enter complete component Class detail</li>
-    </ul>
-
-    <form id="form_add_class" method="post" action="index.php?page=add_class">
-      <div>Enter Component Class detail</div>
-      <div><span class="label">Component Class Name</span><input type="text" name="cls_name" placeholder="Class Name" value="<?=$cls_info["cls_name"]?>"></div>
-      <div><span class="label">Component Supplier</span><input type="text" name="cls_supplier" placeholder="Supplier" value="<?=$cls_info["cls_supplier"]?>"></div>
-      <div><span class="label">Expected Life</span><input type="text" name="cls_life" placeholder="Expected Life (in Hours)" value="<?=$cls_info["cls_life"]?>"></div>
-      <div>
-        <input type="hidden" name="from_add_class" value="AddClass">
-        <input type="hidden" name="cls_id" value="<?=$cls_info["cls_id"]?>">
-        <input type="hidden" name="cls_action" value="<?=$cls_info["cls_action"]?>">
-        <input type="button" id="btn_add_class" value="<?=$cls_info["cls_button"]?>">
+<div class="portlet light bordered">
+  <div class="portlet-title">
+      <div class="caption">
+          <i class="icon-equalizer font-red-sunglo"></i>
+          <span class="caption-subject font-red-sunglo bold uppercase">Component Class</span>
+          <span class="caption-helper">enter component class info</span>
       </div>
-    </form>
+  </div>
+
+  <div class="portlet-body">
+      <!-- BEGIN FORM-->
+        <form id="form_add_class" class="form-horizontal" method="post" action="index.php?page=add_class">
+            <div class="form-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> You have some form errors. Please check below.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button> Your form validation is successful!
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Component Class Name</label>
+                    <div class="col-md-4">
+                        <input type="text" name="cls_name" class="form-control" placeholder="Class Name" value="<?=$cls_info["cls_name"]?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Component Supplier</label>
+                    <div class="col-md-4">
+                        <input type="text" name="cls_supplier" class="form-control" placeholder="Supplier" value="<?=$cls_info["cls_supplier"]?>">
+                    </div>
+                </div>
+
+                <div class="form-group last">
+                    <label class="col-md-3 control-label">Expected Life</label>
+                    <div class="col-md-4">
+                        <input type="text" name="cls_life" class="form-control" placeholder="Expected Life (in Hours)" value="<?=$cls_info["cls_life"]?>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="hidden" name="form_add_class" value="AddClass">
+                        <input type="hidden" name="cls_id" value="<?=$cls_info["cls_id"]?>">
+                        <input type="hidden" name="cls_action" value="<?=$cls_info["cls_action"]?>">
+                        <button type="submit" id="btn_add_class" class="btn btn-circle green">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+      <!-- END FORM-->
   </div>
 </div>
 
 <script>
   $(() => {
-    $("#btn_add_class").on("click", () => {
-      $(".err_box").hide();
-      if($("#form_add_class input[name='cls_name']").val() === "" || $("#form_add_class input[name='cls_supplier']").val() === "" || $("#form_add_class input[name='cls_life']").val() === "") {
-        $(".err_box").show();
-      } else {
-        $("#form_add_class").submit();
+    $("#form_add_class").validate({
+      errorElement: 'span', //default input error message container
+      errorClass: 'help-block help-block-error', // default input error message class
+
+      rules: {
+        cls_name: {
+            minlength: 3,
+            maxlength: 50,
+            required: true
+        },
+        cls_supplier: {
+          minlength: 3,
+          maxlength: 50,
+          required: true
+        },
+        cls_life: {
+          maxlength: 5,
+          required: true,
+          number: true
+        }
+      },
+
+      invalidHandler: function (event, validator) { //display error alert on form submit
+          $('.alert-success').hide();
+          $('.alert-danger').show();
+          App.scrollTo($('.alert-danger'), -200);
+      },
+
+      highlight: function (element) { // hightlight error inputs
+         $(element)
+              .closest('.form-group').addClass('has-error'); // set error class to the control group
+      },
+
+      unhighlight: function (element) { // revert the change done by hightlight
+          $(element)
+              .closest('.form-group').removeClass('has-error'); // set error class to the control group
+      },
+
+      success: function (label) {
+          label
+              .closest('.form-group').removeClass('has-error'); // set success class to the control group
+      },
+
+      submitHandler: function (form) {
+          $('.alert-success').show();
+          $('.alert-danger').hide();
+          form[0].submit(); // submit the form
       }
     });
   });

@@ -23,7 +23,7 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h1 class="page-title"> <span class="page_title">Admin Dashboard</span>
+<h1 class="page-title"> <span class="page_title"></span>
     <!-- <small>statistics, charts, recent events and reports</small> -->
 </h1>
 <!-- END PAGE TITLE-->
