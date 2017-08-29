@@ -38,6 +38,7 @@
 <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
@@ -53,18 +54,30 @@
 <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 
-<script>
-$(() => {
-  <? if(isset($page_title)) {?>
-      $(".page_title").text("<?=$page_title?>");
-  <? }?>
+<script src="../../public/js/toastr.js" type="text/javascript"></script>
+<script src="../../public/js/validation.js" type="text/javascript"></script>
 
-  <? if(isset($_SESSION["message"])) {
-      $alert_type = $_SESSION["message"];
-      $alert_msg = $_SESSION[$_SESSION["message"] . "_msg"];
-      unset($_SESSION[$_SESSION["message"] . "_msg"]);
-      unset($_SESSION["message"]);?>
-        $(".msg_box").addClass("alert-<?=$alert_type?>").text("<?=$alert_msg?>").show();
-  <? }?>
-});
+<script>
+  // On document ready start
+  $(() => {
+    // Update page title start
+    <? if(isset($page_title)) {?>
+        $(".page_title").text("<?=$page_title?>");
+    <? }?>
+    // Update page title end
+
+    // Unset alert session start
+    <? if(isset($_SESSION["alert"])) {
+        $alert_title = $_SESSION["alert_title"];
+        $alert_msg = $_SESSION["alert_msg"];
+        unset($_SESSION["alert"]);
+        unset($_SESSION["alert_title"]);
+        unset($_SESSION["alert_msg"]);
+      ?>
+        // Toastr notification
+        toastr["<?=$_SESSION['alert_type']?>"]("<?=$_SESSION['alert_msg']?>", "<?=$_SESSION['alert_title']?>")
+    <? }?>
+    // Unset alert session start
+  });
+  // On document ready end
 </script>

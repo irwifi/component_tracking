@@ -85,8 +85,8 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item <? if($page === 'hour_log_entry') {echo 'active';}?>">
-                        <a href="components_date_time_pickers.html" class="nav-link ">
-                            <span class="index.php?page=hour_log_entry">Hour Log Entry</span>
+                        <a href="index.php?page=hour_log_entry" class="nav-link ">
+                            <span class="title">Hour Log Entry</span>
                         </a>
                     </li>
                     <li class="nav-item <? if($page === 'component_fitting') {echo 'active';}?>">

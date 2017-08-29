@@ -25,23 +25,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <? include "../../template/head.html";?>
+  <? include "../../template/head.php";?>
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="page-wrapper">
-          <? include "../../template/header.html";?>
+          <? include "../../template/header.php";?>
 
             <!-- BEGIN CONTAINER -->
             <div class="page-container">
-              <? include "../../template/sidebar.html";?>
+              <? include "../../template/sidebar.php";?>
 
                 <!-- BEGIN CONTENT -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN CONTENT BODY -->
                     <div class="page-content">
-                        <? include "../../template/theme_panel.html";?>
+                        <? include "../../template/theme_panel.php";?>
 
-                        <? include "../../template/page_header.html";?>
+                        <? include "../../template/page_header.php";?>
 
                         <? include $page . ".php";?>
                     </div>
@@ -51,11 +51,11 @@
             </div>
             <!-- END CONTAINER -->
 
-          <? include "../../template/footer.html";?>
+          <? include "../../template/footer.php";?>
         </div>
 
-        <? include "../../template/modal.html";?>
+        <? include "../../template/modal.php";?>
 
-      <? include "../../template/scripts.html";?>
+      <? include "../../template/scripts.php";?>
     </body>
 </html>
