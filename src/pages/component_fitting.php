@@ -1,5 +1,6 @@
 <?
   if(isset($_POST["form_component_fitting"]) && $_POST["form_component_fitting"] === "ComponentFitting") {
+
     if(!empty($_POST["cmp_id"])) {
       $stmt = $conn->prepare("UPDATE tbl_component SET cmp_status = 2, cmp_fitted_on = :fitted_on, cmp_fitted_by = :fitted_by, cmp_machine_id = :mac_id, cmp_fitted_hour = :fitted_hour WHERE cmp_id = :cmp_id");
       $stmt->bindParam(':cmp_id', $_POST["cmp_id"]);
@@ -45,7 +46,7 @@
 
   <div class="portlet-body">
       <!-- BEGIN FORM-->
-        <form id="form_component_fitting" class="form-horizontal" method="post" action="index.php?page=component_fitting">
+        <form id="form_component_fitting" class="form-horizontal form_validation" method="post" action="index.php?page=component_fitting">
             <div class="form-body">
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button> You have some form errors. Please check below.
@@ -111,8 +112,7 @@
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
                         <input type="hidden" name="form_component_fitting" value="ComponentFitting">
-                        <input type="hidden" name="cmp_id" value="<?=$cmp_info["cmp_id"]?>">
-                        <input type="hidden" name="cmp_action" value="<?=$cmp_info["cmp_action"]?>">
+                        <input type="hidden" name="cmp_action">
                         <button type="submit" id="btn_component_fitting" class="btn btn-circle green">Submit</button>
                     </div>
                 </div>
@@ -121,3 +121,35 @@
       <!-- END FORM-->
   </div>
 </div>
+
+
+
+
+<script>
+  var validation_rules = {
+    cmp_id: {
+        maxlength: 10,
+        required: true,
+        number: true
+    },
+    mac_id: {
+      maxlength: 10,
+      required: true,
+      number: true
+    },
+    cmp_fitted_hour: {
+      maxlength: 5,
+      required: true,
+      number: true
+    },
+    cmp_fitted_on: {
+      maxlength: 10,
+      required: true
+    },
+    cmp_fitted_by:  {
+      minlength: 3,
+      maxlength: 50,
+      required: true
+    }
+  };
+</script>
